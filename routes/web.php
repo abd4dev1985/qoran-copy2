@@ -32,9 +32,15 @@ use Illuminate\Support\Facades\Cache;
 
 Route::get('/', function () {
     $surahs= Surah::all();
+    $root= $_SERVER["DOCUMENT_ROOT"];
+    return $root;
     return Inertia::render('mywelcome', [
         'surahs'=> $surahs,
     ]);
+});
+Route::get('/myroot', function () {
+    $root= $_SERVER["DOCUMENT_ROOT"];
+    return $root;
 });
 
 Route::inertia('/download','download');
