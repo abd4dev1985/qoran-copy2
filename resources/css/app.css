@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.myborder {
+    border: 28px solid transparent;
+    border-image: url('/img/darkcopy.png') 24 round;
+  }
