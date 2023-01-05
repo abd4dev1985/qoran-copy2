@@ -75,12 +75,12 @@ Route::get('/test_sqlite', function () {
  return $pages ;
 });
 Route::get('/surahs_list', function () {
-    $surahs_list = Cache::get('all_surahs');
+    $surahs_list = Surah::with('pages')->get();
     return  $surahs_list  ;
      
 });
 Route::get('/pages_list', function () {
-    $pages_list = Cache::get('all_pages');
+    $pages_list = Page::with('surahs')->get();
     return  $pages_list  ;
 });
 Route::get('/testrenderdb', function () {

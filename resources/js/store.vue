@@ -71,6 +71,8 @@ db.get('qurandata','surahs_list',(data)=>{
 let pages_list=ref([])
 db.get('qurandata','pages_list',(data)=>{
       pages_list.value = data
+      console.log('pages_list is ')
+       console.log(data)
       // if db dose not have pages_list empty make fecth request for new data and save it in db  ,
        if (data.length==0) {
         fetch('/pages_list').then((res)=>res.json()).
