@@ -23,7 +23,7 @@
                         <h1 class=" my-2 py-1 bg-rose-500 text-white  dark:text-gray-100 w-1/2 mx-auto rounded-xl  align-text-bottom font-bold text-lg dark:shadow-md shadow-xl dark:shadow-rose-600  ">
                          سورة {{get_surah_name(ayah.surah_id)}} {{ayah.surah_id}}
                         </h1>
-                        <h2 class="text-base " v-if="ayah.surah_id != 9"> بسم الله الرحمن الرحيم </h2>
+                        <h2 class="text-base " v-if="ayah.surah_id != 9  || ayah.surah_id != 1"> بسم الله الرحمن الرحيم </h2>
                     </div>
                     <span
                     :id="ayah.id"  
@@ -79,7 +79,7 @@
                         <h1 class="text-white my-1 bg-rose-500 shadow-xl dark:shadow-rose-600 py-2 rounded-xl    text-xl     font-bold   w-1/4 mx-auto  "  >
                          سورة {{get_surah_name(ayah.surah_id)}} {{ayah.surah_id}}
                         </h1>
-                        <h2 v-if="ayah.surah_id != 9"> بسم الله الرحمن الرحيم </h2>
+                        <h2 v-if="ayah.surah_id != 9 || ayah.surah_id != 1 "> بسم الله الرحمن الرحيم </h2>
                     </div>
                     <span
                     :id="ayah.id"  

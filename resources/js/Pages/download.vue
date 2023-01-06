@@ -7,8 +7,19 @@
     يمكنك الان قراءة و سماع السور و الايات مع التفاسير دون ضرورةالاتصال بالانترنت  ,  يعمل على جميع انظمة التشغيل   Android, IOS, Windows, Linux 
 </p> 
 
-<button @click="download_chach" class="block w-9/12 mx-auto my-6 bg-gray-800 rounded-xl text-white p-4 m-3 text-2xl">download
-</button>
+<div @click="download_chach" class="flex align-middle justify-center w-9/12 mx-auto my-6 bg-gray-800 rounded-xl text-white p-4 m-3 text-2xl">  download
+
+    <div v-if="show_spiner"  class="w-10 inline-block ml-6 " role="status">
+        <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+        </svg>
+        
+    </div>
+</div>
+<p v-show="show_spiner" dir="rtl" class=" my-2 dark:text-gray-100 w-10/12 mx-auto leading-loose  " >
+    يتم تحميل و تنزيل الربرنامج بالخلفية يمكن متابعة التصفح 
+</p> 
 
 <svg class="h-64 w-60 mx-auto my-5 " viewBox="0 0 512 721" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M66.7785 563.585H512V36.9159C512 16.4611 495.529 0 475.046 0H36.9541C16.4706 0 0 16.4611 0 36.9159V601.387C0 630.306 23.1523 653.43 52.0903 653.43H512V633.862H66.7785C47.639 633.862 32.5028 618.297 32.5028 598.719C32.5028 579.15 47.639 563.585 66.7785 563.585Z" fill="#AD2125"/>
@@ -44,13 +55,15 @@ props:[
 data() {
     return {
         store,
+        show_spiner:false,
+
     }
 },
 methods: {
 
  download_chach(){
     //navigator.serviceWorker.controller.postMessage({download:'yes'})
-
+     this.show_spiner=true   
      fetch('/tafseers/'+ store.tafseers.type)
      .then( (res)=>res.json()  )
      .then( (data)=>{
