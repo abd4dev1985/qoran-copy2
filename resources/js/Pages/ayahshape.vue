@@ -5,11 +5,11 @@
     <Teleport v-if="open"   to='#tool_bar' >
         <div   v-click-outside="close" class="text-white flex justify-around items-center larg:h-16   h-14  w-full  bg-rose-400 shadow-xl  z-40 ">
             
-            <div @click="get_audio(surah_id,number)" class="mx-2 hidden" >         
+            <div @click="get_audio(surah_id,number,id)" class="mx-2 hidden" >         
                 <svg  class="w-6 h-6 mx-auto rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path></svg>
                 <span class="text-xs align-top" >استماع   </span>
             </div>
-             <div  @click="get_audio(surah_id,number)" class="mx-2" >  
+             <div  @click="get_audio(surah_id,number,id)" class="mx-2" >  
                 <svg class="mx-auto  w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>       
                 <span class="text-xs align-top" >استماع   </span>
             </div>
@@ -119,11 +119,12 @@ methods: {
         
        
     },
-    get_audio(surah_num,ayah_num){
+    get_audio(surah_num,ayah_num,id){
         store.audio_box.value='opened'
         store.audio_surah_number.value=surah_num ;
         store.audio_ayah_number.value=ayah_num ;
-        store.get_url(surah_num,ayah_num)
+        store.audio_ayah_id.value=id ;
+        store.get_url(surah_num,ayah_num,id)
         this.open=false
     },
     add_marke(surah_id,ayah_number,ayah_id){

@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'testquran',
+    'name' => 'alquranalkareemapp',
     'manifest' => [
-        'name' => env('APP_NAME', 'My PWA App'),
+        'name' => env('APP_NAME', 'alquranalkareemapp'),
         'short_name' => 'quran',
         'start_url' => '/',
         'background_color' => '#ffffff',

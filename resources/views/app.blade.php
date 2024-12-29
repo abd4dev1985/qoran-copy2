@@ -10,7 +10,7 @@
     @inertiaHead
     @laravelPWA
   </head>
-  <body class="relative">
+  <body class="relative scroll-smooth">
   
    <div   class="" >
      @inertia

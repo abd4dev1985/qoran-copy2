@@ -27,5 +27,14 @@ class AppServiceProvider extends ServiceProvider
         if (env('APP_ENV') == 'production') {
             $url->forceScheme('https');
         }
+        // path public to public_html to make mix manifist work 
+        // $this->app->bind('path.public', function() {
+         //   return base_path().'/../public_html';
+      //  });
+        
+        
+        
+        
+        
     }
 }

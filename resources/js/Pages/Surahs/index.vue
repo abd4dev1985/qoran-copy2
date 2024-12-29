@@ -6,6 +6,7 @@
 </Head>
     
     <div class="relative bg-qurancover larg:bg-contain bg-cover ">
+        
         <!--page for mobile --> 
         <div   v-if="screen_is_small" class="text-sm sticky top-0 z-10 flex justify-between w-full  bg-rose-400  dark:bg-gray-900 text-white font-semibold "> 
             <div v-if="store.pages_list.length!==0" class="py-2 mx-4 dark:bg-rose-500 px-2 rounded-lg shadow-lg dark:shadow-rose-600 dark:text-slate-200 ">
@@ -36,10 +37,7 @@
                     </div>    
                 </div>
             
-                <div class="hidden">
-                    <input class="border-2 border-red-600 w-96 " v-model="name"  />
-                    <button v-on:click="show_surah" > get surah </button>
-                </div>
+                
 
                 <div  class="mx-auto my-4 px-5 w-[300px] flex justify-around items-center  " >
                     <svg @click="previous_page"   xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

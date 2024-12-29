@@ -36,17 +36,11 @@ Route::get('/', function () {
         'surahs'=> $surahs,
     ]);
 });
-Route::get('/myroot', function () {
-    $root= database_path('database.sqlite');
-    return $root;
-});
+
+
+
 
 Route::inertia('/download','download');
-
-Route::get('/trycache/{id}', function ($id) {
-     $new_pages = Cache::get('surahs/'.$id);
-     return  $new_pages  ;  
-});
 
 /*
 Route::get('/baghawi', function () {
@@ -120,6 +114,7 @@ Route::post('/name', [SurahController::class, 'get_name']);
 //Route::get('/firstvue', [SurahController::class, 'first_vue']);
 //Route::post('/firstvue', [SurahController::class, 'first_vue']);
 Route::get('/surahs/all', [SurahController::class, 'all']);
+Route::get('/surahs/more_pages/{surah_id}', [SurahController::class, 'more_pages']);
 Route::resources([
     'surahs' => SurahController::class]);
 

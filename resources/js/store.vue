@@ -10,8 +10,8 @@ let count = ref( 0 )
 let audio_surah_number= ref(0)
 
 let audio_ayah_number= ref(0)
-
-let recitation= ref('Alafasy')
+let audio_ayah_id= ref(0)
+let recitation= ref('alafasy')
 recitation.value = (localStorage.recitation !=null) ? localStorage.recitation:recitation.value
 
 let current_page = ref( 1)
@@ -113,10 +113,13 @@ let fitch_pages_list=()=>{
 
 
 
-
+let set_audio_ayah_id =function(surah_number) { 
+  audio_ayah_id.value = surah_number
+}
 let set_audio_surah_number =function(surah_number) { 
   audio_surah_number.value = surah_number
 }
+
 let set_audio_ayah_number =function(ayah_number) { 
   audio_ayah_number.value = ayah_number
 }
@@ -125,39 +128,33 @@ let set_globa_ayah_body =function(body) {
 }
 
 
-let get_url =function(surah_number,ayah_number){
-  let part1 ;
-  let part2 ;
+let get_url =function(surah_number,ayah_number,id){
   audio_surah_number.value=surah_number
   audio_ayah_number.value =ayah_number
-  // get  part1 depending on surah_number digits
-  switch (surah_number.toString().length) {
-    case 1:  part1 = "00";  break;
-    case 2:  part1 = "0";   break;
-    case 3:  part1 = "";
-  }
-  part1 = part1 + surah_number ;
-  // get  part2 depending on ayah_number digits
-  switch (ayah_number.toString().length) {
-    case 1:  part2 = "00";    break;
-    case 2:  part2 = "0";     break;
-    case 3:  part2 = "";
-  }  
-  part2 = part2 + ayah_number ;
-  // final url
-  audio_url.value= 'https://download.quranicaudio.com/verses/'+recitation.value+'/mp3/'+part1+part2+'.mp3';
-
+  switch (recitation.value ) {
+  case 'alafasy':
+      audio_url.value= 'https://cdn.islamic.network/quran/audio/128/ar.alafasy/'+id+'.mp3';
+    break;
+  case "abdurrahmaansudais":
+      audio_url.value= 'https://cdn.islamic.network/quran/audio/64/ar.abdurrahmaansudais/'+id+'.mp3';
+    break;
+  case "abdulsamad":
+     audio_url.value= 'https://cdn.islamic.network/quran/audio/64/ar.abdulsamad/'+id+'.mp3';
+    break;
+  case "hanirifai":
+      audio_url.value= 'https://cdn.islamic.network/quran/audio/64/ar.hanirifai/'+id+'.mp3';
+    break;
+  case "muhammadjibreel":
+      audio_url.value= 'https://cdn.islamic.network/quran/audio/128/ar.muhammadjibreel/'+id+'.mp3';
+}
   show_audio.value=true;
-
-
-
-
 }
  
 
 let increas =()=>{
     count.value++ 
     audio_ayah_number.value++
+    audio_ayah_id.value++
 } 
 let decreas =()=>{
    count.value--
@@ -193,6 +190,8 @@ let store ={
     globa_ayah_id:globa_ayah_id,
     audio_url:audio_url,
     recitation:recitation,
+    audio_ayah_id:audio_ayah_id,
+    set_audio_ayah_id:set_audio_ayah_id,
     audio_surah_number:audio_surah_number,
     audio_ayah_number:audio_ayah_number,
     set_audio_surah_number:set_audio_surah_number,

@@ -1,6 +1,6 @@
 <template>
     <div  class="w-full   relative   dark:bg-[#130f0e]  dark:text-white  text-gray-800 shadow-xl "  >
-        <nav  class="flex sticky top-0 justify-start  items-center larg:h-[60px] h-[50px] z-30  bg-white dark:bg-[#130f0e]  overflow-hidden">   
+        <nav v-show="show_navbar" class="flex sticky top-0 justify-start  items-center larg:h-[60px] h-[50px] z-30  bg-white dark:bg-[#130f0e]  overflow-hidden">   
             <svg @click=" show_side= !show_side " class=" block larg:hidden w-7 h-10 absolute  top-2 right-2 stroke-red-400 " fill="none"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>        
@@ -58,7 +58,7 @@
                  
                 <div v-for="(result, index) in search_results" :key="index" class="text-right w-full" >
                     <h3 class=" w-full  mt-2 mobile:mt-1 text-xl mobile:text-base  text-red-500" >سورة {{ result.surah.name}} - اية رقم {{result.ayah_number}} </h3>
-                    <Link  @click="showmodal = false"  v-bind="{ href: '/surahs/'+ result.surah.id+'#'+result.id }"  class="mobile:text-sm w-full">
+                    <Link  @click="showmodal = false"  v-bind="{ href: '/surahs/'+ result.surah.id+'#'+result.id }"  class="mobile:text-sm dark:text-gray-200 w-full">
                     {{ result.body}}
                     </Link>  
                 </div> 
@@ -180,6 +180,7 @@ const installApp  = new Event('installApp');
             title: String,
             search:String,
             fortest:String ,
+            show_navbar:{type:Boolean,default:true},
         },
         components: {
             Head,

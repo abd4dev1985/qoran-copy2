@@ -17,8 +17,10 @@
         
     </div>
 </div>
-<p v-show="show_spiner" dir="rtl" class=" my-2 dark:text-gray-100 w-10/12 mx-auto leading-loose  " >
-    يتم تحميل و تنزيل الربرنامج بالخلفية يمكن متابعة التصفح 
+<p v-show="show_spiner" dir="rtl" class=" my-4 dark:text-gray-100 w-10/12 mx-auto leading-loose  " >
+<span>يتم حاليا تنزيل السور و التفاسير بذاكرة جهازك يمكن متابعة التصفح </span>
+<Link class="mx-5 text-blue-500" href="/">  العودة الى الصفحة الرئيسية </Link>
+
 </p> 
 
 <svg class="h-64 w-60 mx-auto my-5 " viewBox="0 0 512 721" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,6 +35,8 @@
 
 
 <script>
+
+
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import { Inertia, Method } from '@inertiajs/inertia';
 import Myapplayout from './Myapplayout.vue';
@@ -43,6 +47,25 @@ import store from '../store.vue';
 let db = require(__dirname + '/../DB');
 const axios =require('axios').default
 
+//create  installApp event  
+const installApp  = new Event('installApp');
+// use event handler for processing beforeinstallprompt event
+window.addEventListener("beforeinstallprompt",function(beforeInstallPromptEvent) {
+    beforeInstallPromptEvent.preventDefault();
+    // Shows InstallPrompt after firing "installAPP" by btn  EVENT
+    window.addEventListener("installApp", function(e) {
+        beforeInstallPromptEvent.prompt()
+        beforeInstallPromptEvent.userChoice.then((choiceResult)=>{
+            console.log(choiceResult.outcome)
+            if (choiceResult.outcome==="accepted") {
+                console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
+                Inertia.visit("/")
+            }
+
+        })
+             
+    }); 
+});
 
 export default {
 layout: Myapplayout,
@@ -61,9 +84,12 @@ data() {
 },
 methods: {
 
- download_chach(){
+ download_chach(event){
     //navigator.serviceWorker.controller.postMessage({download:'yes'})
-     this.show_spiner=true   
+    this.show_spiner=true   
+    window.dispatchEvent(installApp);
+    event.target.hidden=false ;
+
      fetch('/tafseers/'+ store.tafseers.type)
      .then( (res)=>res.json()  )
      .then( (data)=>{

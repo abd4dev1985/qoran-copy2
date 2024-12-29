@@ -151,7 +151,7 @@ class SurahController extends Controller
         
         $first_page = $pages->first()->id;
         $last_page = $pages->last()->id;
-
+       
         
 
 
@@ -170,7 +170,7 @@ class SurahController extends Controller
         
         return Inertia::render('Surahs/show',[
             'surah'=> $surah->only(['id','name']),'title'=>$title,
-            'pages'=>$pages,  
+            'pages'=> function() use($pages) {return $pages;}  ,  
             'first_page'=>$first_page,'last_page'=>$last_page,'requested_page'=>$requested_page,
             'tafseers'=> Inertia::lazy(function(){
                 $id=session()->get('surah_id');
@@ -226,6 +226,14 @@ class SurahController extends Controller
         $mysurah= Surah::find( $request->number);
         return redirect()->action([SurahController::class, 'first_vue'],['surah' => $mysurah]);               
     }
+    public function more_pages(  $surah_id )
+    {
+        $surah =Surah::with('pages.ayahs')->where('id',$surah_id)->first();
+        $pages =  $surah->pages;
+        $pages = $pages->keyBy('id');
+        return   $pages ;        
+    }
+    
 
     public function first_vue( Request  $request )
     {   

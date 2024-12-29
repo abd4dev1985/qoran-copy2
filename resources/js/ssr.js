@@ -7,6 +7,7 @@ import Ayahshape from './Pages/ayahshape.vue';
 import  Subcompnent from './Pages/subcompnent.vue';
 import  SubMenue from './Pages/SubMenue.vue';
 import  SelectingMenue from './Pages/SelectingMenue.vue';
+import  AutoComplete from './Pages/AutoComplete.vue';
 import  SideBar from './Pages/SideBar.vue';
 import  Chatbox from './Pages/Chatbox.vue';
 import  Test from './Pages/Test.vue';
@@ -24,7 +25,7 @@ createServer((page) => createInertiaApp({
     }).use(plugin)
     .directive('clickOutside',vClickOutside.directive)
     .mixin({
-        components :{Subcompnent,Myapplayout,Ayahshape,Test,Modal,ConfirmationModal,SubMenue,SideBar,Chatbox,SelectingMenue,},
+        components :{Subcompnent,Myapplayout,Ayahshape,Test,Modal,ConfirmationModal,SubMenue,SideBar,Chatbox,SelectingMenue,AutoComplete},
         })
      
   },

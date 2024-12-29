@@ -11,6 +11,7 @@ import  AutoComplete from './Pages/AutoComplete.vue';
 import  SideBar from './Pages/SideBar.vue';
 import  Chatbox from './Pages/Chatbox.vue';
 import  Test from './Pages/Test.vue';
+import  Pc_surah_layout from './Pages/Pc_surah_layout.vue';
 import Modal from './Pages/Modal.vue';
 import ConfirmationModal from './Pages/ConfirmationModal.vue';
 import vClickOutside from 'click-outside-vue3'
@@ -22,7 +23,7 @@ createInertiaApp({
       .directive('clickOutside',vClickOutside.directive)
       .mixin({
         methods: { route },
-        components :{Subcompnent,Myapplayout,Ayahshape,Test,Modal,ConfirmationModal,SubMenue,SideBar,Chatbox,SelectingMenue,AutoComplete,},
+        components :{Subcompnent,Myapplayout,Ayahshape,Test,Modal,ConfirmationModal,SubMenue,SideBar,Chatbox,SelectingMenue,AutoComplete,Pc_surah_layout},
         })
       .mount(el)
   },

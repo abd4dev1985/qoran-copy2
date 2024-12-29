@@ -25,7 +25,7 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                 </template>
                 <template #title>
-                    <div  @click="store.fitch_pages_list" class="cursor-pointer " >&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  الفهرس </div>
+                    <div  @click="store.fitch_pages_list" class="cursor-pointer " >&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    الفهرس </div>
                 </template> 
 
                 <template  #menue_items >
@@ -84,13 +84,19 @@
                       <!--index by juz   -->
                     <div v-show="indexing_typ==='اجزاء'"  >
                                 <div class="text-right px-3"> رقم الجزء </div>
-                                <autoComplete :items="store.juzs.value" :default_value="{ id: 1, juz_id: 1 }" filtered_by="juz_id"  >  
+                                <selectingMenue :list="store.juzs.value" :default_value="{ id: 1, juz_id: 1 }"  >
+                                    <template v-slot:selectedoption="{selected}">
+                                        {{ selected.juz_id }}
+                                    </template> 
+                                    <template v-slot:listing="{item}">
+                                        {{ item.juz_id }}
+                                    </template> 
                                     <template #default="defaultProps"> 
                                         <div   @click="navigate_by_juz(defaultProps.selected)"  class="my-2 bg-rose-600 text-white py-1.5 font-semibold w-14 mx-auto rounded-2xl">
                                             انتقل 
                                         </div>
                                     </template>
-                                </autoComplete >   
+                                </selectingMenue >   
                     </div>  
 
                 </template> 
@@ -191,7 +197,7 @@
             </subMenue>
         
             <!--offline search  -->
-            <subMenue ref="subMenue"    class="dark:text-rose-400" >
+            <subMenue ref="subMenue"    class="dark:text-rose-400 hidden" >
                 <template #svg  >
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                 </template>
@@ -260,7 +266,7 @@ let db = require(__dirname + '/../DB');
             return {
                 store,
                 persons:[
-                    { value:'Rifai',name:' رفاعي'}, { value:'Alafasy',name:'العفاسي'},{ value:'Sudais',name:'السديس'},{ value:'Jibreel',name:'جبريل'},{ value:'AbdulBaset/Mujawwad',name:'عبد الباسط'}
+                    { value:'hanirifai',name:' رفاعي'}, { value:'alafasy',name:'العفاسي'},{ value:'abdurrahmaansudais',name:'السديس'},{ value:'muhammadjibreel',name:'جبريل'},{ value:'abdulsamad',name:'عبد الباسط'}
                 ],
                 available_tafseers:[
                     { value:'all_myasar_text',name:' الميسر'}, { value:'jalalayn',name:'الجلالين'},{ value:'baghawi',name:'البغوي'}
@@ -374,7 +380,8 @@ let db = require(__dirname + '/../DB');
             },
             navigate_by_juz(juz){
                 this.close_side_bar()
-                let page=store.pages_list.value[juz.id-1]
+                let page_id = juz.id
+                let page=store.pages_list.value[page_id-1]
                 this.navigate_by_page(page)    
             },
             makeSearch(){

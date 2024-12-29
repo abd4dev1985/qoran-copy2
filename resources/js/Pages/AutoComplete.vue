@@ -10,8 +10,8 @@
             :displayValue="(item) => item[filtered_by]"
             @change="query = $event.target.value"
           />
-          <ComboboxButton class="absolute inset-y-0 right-0 flex items-center pr-2">
-            <div class="dark:text-white">
+          <ComboboxButton class="absolute  inset-y-0 right-0 flex items-center pr-2">
+            <div class=" w-5 h-5  dark:text-white"   aria-hidden="true">
                 <svg class="w-4 h-3 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
                 <svg class="w-4 h-3 -mt-1 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
